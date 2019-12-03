@@ -2,6 +2,8 @@
 
 #include "SDL.h"
 #include "Flags.h"
+#include "Logger.h"
+#include "Cleanup.h"
 
 class Game {
 public:

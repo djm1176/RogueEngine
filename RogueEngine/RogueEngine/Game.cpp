@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "Logger.h"
-#include "Cleanup.h"
 
 Game::Game() {}
 Game::~Game() {}
@@ -8,6 +6,11 @@ Game::~Game() {}
 static int GameThread(void* ptr);
 
 bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SDL_WindowFlags windowFlags, SDL_RendererFlags rendererFlags) {
+	if (m_initSuccess) {
+		//Previously initialized this Game
+		return false;
+	}
+
 	Debug::Log("Begin startup");
 	m_initSuccess = false;
 	//Initialize SDL components
@@ -17,9 +20,6 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 		return false;
 	}
 	Debug::Log("\tInitialized SDL2");
-
-	//Instantiate Game Thread
-	m_GameThread = SDL_CreateThread(GameThread, "TestThread", (void*)nullptr);
 
 	//Instantiate Window
 	m_Window = SDL_CreateWindow(title, xPos, yPos, width, height, windowFlags);
@@ -45,17 +45,19 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 	m_initSuccess = true;
 	m_isRunning = true;
 	
-	return true;
-}
+	while (m_isRunning) {
+		ProcessInput();
+		Update();
+		Render();
+	}
 
-static int GameThread(void* ptr) {
-	Debug::Log("INSIDE OF THREAD!");
-	return 0;
+	return true;
 }
 
 void Game::Exit() {
 	m_isRunning = false;
 	Debug::Log("Exiting Game");
 	Cleanup(m_Window, m_Renderer);
+	
 	SDL_Quit();
 }
