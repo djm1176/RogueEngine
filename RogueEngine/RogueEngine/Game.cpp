@@ -5,6 +5,8 @@
 Game::Game() {}
 Game::~Game() {}
 
+static int GameThread(void* ptr);
+
 bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SDL_WindowFlags windowFlags, SDL_RendererFlags rendererFlags) {
 	Debug::Log("Begin startup");
 	m_initSuccess = false;
@@ -15,6 +17,9 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 		return false;
 	}
 	Debug::Log("\tInitialized SDL2");
+
+	//Instantiate Game Thread
+	m_GameThread = SDL_CreateThread(GameThread, "TestThread", (void*)nullptr);
 
 	//Instantiate Window
 	m_Window = SDL_CreateWindow(title, xPos, yPos, width, height, windowFlags);
@@ -43,16 +48,9 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 	return true;
 }
 
-void Game::Update() {
-
-}
-
-void Game::ProcessInput() {
-	
-}
-
-void Game::Render() {
-
+static int GameThread(void* ptr) {
+	Debug::Log("INSIDE OF THREAD!");
+	return 0;
 }
 
 void Game::Exit() {
