@@ -4,16 +4,25 @@
 class Roguelike : public Game {
 	// Inherited via Game
 	virtual void ProcessInput() override {
-		Debug::Log("Hello, world! This is Process Input!");
+		SDL_Event event;
+		SDL_PollEvent(&event);
+		switch (event.type) {
+		case SDL_EventType::SDL_QUIT:
+			Exit();
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	virtual void Update() override {
-		Debug::Log("Hello, world! This is Update!");
+		
 	}
 
 	virtual void Render() override {
-		Debug::Log("Hello, world! This is Render!");
-		Exit();
+		
+		
 	}
 };
 
