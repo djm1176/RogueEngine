@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RogueEngine", "RogueEngine\RogueEngine.vcxproj", "{CB10A652-0A51-4204-A720-3D4EBB525BC5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{40261B66-46D2-4FF5-A567-4224E5D0C66E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{CB10A652-0A51-4204-A720-3D4EBB525BC5}.Release|x64.Build.0 = Release|x64
 		{CB10A652-0A51-4204-A720-3D4EBB525BC5}.Release|x86.ActiveCfg = Release|Win32
 		{CB10A652-0A51-4204-A720-3D4EBB525BC5}.Release|x86.Build.0 = Release|Win32
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Debug|x64.ActiveCfg = Debug|x64
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Debug|x64.Build.0 = Debug|x64
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Debug|x86.ActiveCfg = Debug|Win32
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Debug|x86.Build.0 = Debug|Win32
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Release|x64.ActiveCfg = Release|x64
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Release|x64.Build.0 = Release|x64
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Release|x86.ActiveCfg = Release|Win32
+		{40261B66-46D2-4FF5-A567-4224E5D0C66E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
