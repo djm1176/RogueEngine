@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 class Roguelike : public Game {
 	// Inherited via Game
 	virtual void ProcessInput() override {

@@ -1,5 +1,5 @@
 #include "Vector.h"
-#include "Math.h"
+#include "MathUtils.h"
 
 const Vector Vector::zero{ 0.0f };
 const Vector Vector::one{ 1.0f };
