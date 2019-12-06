@@ -17,7 +17,11 @@ class Roguelike : public Game {
 	}
 
 	virtual void Update() override {
-		
+		Vector a = Vector();
+		Vector b = Vector(1, 1, 1);
+		float dist = Vector::distance(a, b);
+		Debug::Log("Distance is: " + std::to_string(dist));
+
 	}
 
 	virtual void Render() override {

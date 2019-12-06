@@ -28,6 +28,18 @@ struct Vector {
 	Vector(float x, float y, float z) : x{ x }, y{ y }, z{ z } {}
 
 	/// <summary>
+	/// Copy a Vector to another Vector.
+	/// </summary>
+	/// <param name="vec">The Vector to copy from.</param>
+	Vector(const Vector& vec) = default;
+
+	/// <summary>
+	/// Move a (temporary) Vector to another Vector.
+	/// </summary>
+	/// <param name="vec">The Vector to move from.</param>
+	Vector(Vector&& vec) = default;
+
+	/// <summary>
 	/// A Vector with all components equal to 0.
 	/// </summary>
 	static const Vector zero;
@@ -52,26 +64,31 @@ struct Vector {
 	/// </summary>
 	static const Vector forward;
 
+private:
+	static const float kEpsilon; //Used by some methods as a lower bound of floats; initialization is in source Vector.cpp file
+
+public:
+
 	//TODO: Consider caching magnitude, square magnitude, and normalized values; then return by reference
 
 	/// <summary>
 	/// Get the magnitude, or hypotenuse, of this Vector.
 	/// </summary>
 	/// <returns>The magnitude of this Vector.</returns>
-	const float magnitude();
+	const float magnitude() const;
 
 	/// <summary>
 	/// Get the square magnitude of this Vector.
 	/// </summary>
 	/// <remarks>This operation is faster than magnitude, as a square root calculation is not required.</remarks>
 	/// <returns>The square magnitude of this Vector.</returns>
-	const float sqrMagnitude();
+	const float sqrMagnitude() const;
 
 	/// <summary>
 	/// Get a copy of this Vector where its magnitude, or hypotenuse, is 1.
 	/// </summary>
 	/// <returns>A normalized copy of this Vector.</returns>
-	const Vector normalized();
+	const Vector normalized() const;
 
 	/// <summary>
 	/// Get the cross product of this Vector.
@@ -104,21 +121,21 @@ struct Vector {
 	/// <param name="b">The second Vector.</param>
 	/// <param name="t">The time between 0.0 and 1.0 to interpolate between the two Vectors.</param>
 	/// <returns>A Vector that is at position t on a line between two Vectors.</returns>
-	static const Vector lerp(const Vector& a, const Vector& b, const float& t);
+	static const Vector lerp(const Vector& a, const Vector& b, float t);
 
 	/// <summary>
 	/// Copies the value from one Vector to another.
 	/// </summary>
 	/// <param name="vec">The pre-existing Vector to copy from.</param>
 	/// <returns>This Vector with new values.</returns>
-	Vector& operator=(const Vector& vec);
+	Vector& operator=(const Vector& vec) = default;
 
 	/// <summary>
 	/// Moves the value from one (temporary) Vector to another.
 	/// </summary>
 	/// <param name="vec">The pre-existing (temporary) Vector to move from.</param>
 	/// <returns>This Vector with new values.</returns>
-	Vector& operator=(const Vector&& vec);
+	Vector& operator=(Vector&& vec) = default;
 
 	/// <summary>
 	/// Add to this Vector component-wise.
@@ -139,14 +156,14 @@ struct Vector {
 	/// </summary>
 	/// <param name="scalar">The value to scale this Vector by.</param>
 	/// <returns>This Vector with new values.</returns>
-	Vector& operator*=(const float& scalar);
+	Vector& operator*=(float scalar);
 
 	/// <summary>
 	/// Divide this Vector by a Scalar.
 	/// </summary>
 	/// <param name="scalar">The value to scale this Vector by.</param>
 	/// <returns>This Vector with new values.</returns>
-	Vector& operator/=(const float& scalar);
+	Vector& operator/=(float scalar);
 
 	/// <summary>
 	/// Add to this Vector component-wise.
@@ -167,14 +184,14 @@ struct Vector {
 	/// </summary>
 	/// <param name="scalar">The value to scale this Vector by.</param>
 	/// <returns>This newly scaled Vector.</returns>
-	const Vector operator*(const float& scalar) const;
+	const Vector operator*(float scalar) const;
 
 	/// <summary>
 	/// Scale this Vector by a scalar.
 	/// </summary>
 	/// <param name="scalar">The value to scale this Vector by.</param>
 	/// <returns>This newly scaled Vector.</returns>
-	const Vector operator/(const float& scalar) const;
+	const Vector operator/(float scalar) const;
 
 	/// <summary>
 	/// Compares this Vector with another component-wise.
@@ -195,14 +212,7 @@ struct Vector {
 	/// </summary>
 	/// <param name="index">An integer where 0, 1, and 2 correspond to x, y, z components, Respectively.</param>
 	/// <returns>The value of the component of this Vector.</returns>
-	const float& operator[](int index) const;
-
-	/// <summary>
-	/// Output this Vector to an output stream.
-	/// </summary>
-	std::ostream& operator<< (std::ostream& out) const;
-
-
+	float& operator[](int index);
 
 };
 

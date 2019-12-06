@@ -4,6 +4,7 @@
 #include "Flags.h"
 #include "Logger.h"
 #include "Cleanup.h"
+#include "Vector.h"
 
 class Game {
 public:

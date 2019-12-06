@@ -1,7 +1,10 @@
 #pragma once
-#include "Vector.h"
 
-class Transform {
+#include "Vector.h"
+#include "Component.h"
+#include <iostream>
+
+class Transform : public Component {
 public:
 	Vector& position();
 	Vector& localPosition();
@@ -16,9 +19,9 @@ public:
 	Vector right();
 
 private:
-	Vector position;
-	Vector scale;
-	float rotation;
+	Vector m_Position;
+	Vector m_Scale;
+	float m_Rotation;
 	
-	Transform &parent;
+	Transform &m_Parent;
 };

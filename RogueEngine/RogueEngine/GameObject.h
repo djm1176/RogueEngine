@@ -15,7 +15,7 @@ private:
 	GameObject();
 	~GameObject();
 
-	Transform transform;
-	std::list<Component> components;
+	Transform m_Transform;
+	std::list<Component> m_Components;
 };
 

@@ -1,3 +1,10 @@
 #pragma once
-class Component {};
+
+class Component {
+public:
+
+protected:
+	Component();
+	~Component();
+};
 
