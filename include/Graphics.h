@@ -1,9 +1,11 @@
+#pragma once
+
 #include <string>
 
 #include "SDL.h"
 #include "Logger.h"
 
-SDL_Texture* loadTexture(const std::string& filename, SDL_Renderer *renderer) {
+static SDL_Texture* loadTexture(const std::string& filename, SDL_Renderer *renderer) {
 	//Initialize to nullptr to avoid dangling pointer issues
 	SDL_Texture* texture = nullptr;
 	//Load the image
@@ -20,4 +22,8 @@ SDL_Texture* loadTexture(const std::string& filename, SDL_Renderer *renderer) {
 		Debug::LogError("LoadBMP: Failed to load BMP from file using loadTexture");
 	}
 	return texture;
+}
+
+static void blit(SDL_Texture* tex, SDL_Renderer* ren, SDL_Rect* rect) {
+	SDL_RenderCopy(ren, tex, nullptr, rect);
 }

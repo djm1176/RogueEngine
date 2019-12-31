@@ -45,13 +45,25 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 	m_initSuccess = true;
 	m_isRunning = true;
 
+	//This color is what fills the screen before graphics are drawn (default: black)
+	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
+
 	Start();
 
 	while (m_isRunning) {
 		m_ProcessInput();
 
 		Update();
+
+		//Rendering
+		
+		//Clear the current graphics in the Renderer
+		SDL_RenderClear(m_Renderer); //TODO: Handle return value
+		
 		Render();
+
+		//Update the window with graphics that are drawn on Renderer
+		SDL_RenderPresent(m_Renderer);
 	}
 
 	return true;

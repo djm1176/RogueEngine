@@ -1,9 +1,19 @@
 #include "Game.h"
 
 class Roguelike : public Game {
+
+	SDL_Texture* testTexture;
+	SDL_Rect testRect;
+
 	// Inherited via Game
 	virtual void Start() override {
-		
+		testTexture = loadTexture(Resources::GetResourcePath() + "64.bmp", GetRenderer());
+
+		testRect.x = 0;
+		testRect.y = 0;
+		testRect.w = 64;
+		testRect.h = 64;
+
 	}
 
 	virtual void Update() override {
@@ -11,7 +21,7 @@ class Roguelike : public Game {
 	}
 
 	virtual void Render() override {
-		
+		blit(testTexture, GetRenderer(), &testRect);
 	}
 };
 

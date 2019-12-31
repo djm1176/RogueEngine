@@ -5,6 +5,8 @@
 #include "Logger.h"
 #include "Cleanup.h"
 #include "Vector.h"
+#include "Graphics.h"
+#include "Resources.h"
 
 class Game {
 public:
@@ -17,6 +19,7 @@ public:
 
 	bool IsRunning() { return m_isRunning; }
 
+	SDL_Renderer* GetRenderer() { return m_Renderer; }
 
 	//User-defined required methods
 	virtual void Start() = 0;
@@ -28,7 +31,6 @@ private:
 
 	bool m_initSuccess;
 	bool m_isRunning;
-	SDL_Thread* m_GameThread;
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
 };
