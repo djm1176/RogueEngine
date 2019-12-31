@@ -131,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Cleanup.h" />
-    <ClInclude Include="..\include\Component.h" />
     <ClInclude Include="..\include\Flags.h" />
     <ClInclude Include="..\include\Game.h" />
     <ClInclude Include="..\include\GameObject.h" />
@@ -143,9 +142,7 @@
     <ClInclude Include="..\include\Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Component.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
-    <ClCompile Include="..\src\GameObject.cpp" />
     <ClCompile Include="..\src\Logger.cpp" />
     <ClCompile Include="..\src\Transform.cpp" />
     <ClCompile Include="..\src\Vector.cpp" />

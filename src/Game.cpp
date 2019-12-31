@@ -39,14 +39,22 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 		return false;
 	}
 	Debug::Log("\tCreated Game Renderer");
+
+
+	//This color is what fills the screen before graphics are drawn (default: black)
+	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
+
+	//Engine-specific initializations
+
+
+
 	Debug::Log("\nStartup successful\n");
 
 	//Initialization successful
 	m_initSuccess = true;
 	m_isRunning = true;
 
-	//This color is what fills the screen before graphics are drawn (default: black)
-	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
+
 
 	Start();
 

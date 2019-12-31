@@ -5,6 +5,10 @@ class Roguelike : public Game {
 	SDL_Texture* testTexture;
 	SDL_Rect testRect;
 
+	ObjectManager manager;
+
+	GameObject& go{manager.addGameObject()};
+
 	// Inherited via Game
 	virtual void Start() override {
 		testTexture = loadTexture(Resources::GetResourcePath() + "64.bmp", GetRenderer());
@@ -14,12 +18,17 @@ class Roguelike : public Game {
 		testRect.w = 64;
 		testRect.h = 64;
 
+		
+		go.addComponent<Transform>();
+		Debug::Log(go.getComponent<Transform>().position());
+
 	}
 
 	virtual void Update() override {
 
 	}
 
+	//TODO: Rendering should be done internally and not really exposed to the game
 	virtual void Render() override {
 		blit(testTexture, GetRenderer(), &testRect);
 	}

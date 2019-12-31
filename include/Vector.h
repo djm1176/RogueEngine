@@ -1,5 +1,6 @@
 #pragma once
 #include <ostream>
+#include <string>
 
 struct Vector {
 
@@ -38,6 +39,8 @@ struct Vector {
 	/// </summary>
 	/// <param name="vec">The Vector to move from.</param>
 	Vector(Vector&& vec) = default;
+	
+	operator std::string() const { return "(" + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z) + ")"; }
 
 	/// <summary>
 	/// A Vector with all components equal to 0.

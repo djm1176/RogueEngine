@@ -7,6 +7,8 @@
 #include "Vector.h"
 #include "Graphics.h"
 #include "Resources.h"
+#include "GameObject.h"
+#include "Transform.h"
 
 class Game {
 public:
@@ -33,5 +35,6 @@ private:
 	bool m_isRunning;
 	SDL_Window* m_Window;
 	SDL_Renderer* m_Renderer;
+
 };
 
