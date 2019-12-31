@@ -44,9 +44,12 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 	//Initialization successful
 	m_initSuccess = true;
 	m_isRunning = true;
-	
+
+	Start();
+
 	while (m_isRunning) {
-		ProcessInput();
+		m_ProcessInput();
+
 		Update();
 		Render();
 	}
@@ -60,4 +63,17 @@ void Game::Exit() {
 	Cleanup(m_Window, m_Renderer);
 	
 	SDL_Quit();
+}
+
+void Game::m_ProcessInput() {
+	SDL_Event event;
+	SDL_PollEvent(&event);
+	switch (event.type) {
+	case SDL_EventType::SDL_QUIT:
+		Exit();
+		break;
+
+	default:
+		break;
+	}
 }

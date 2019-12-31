@@ -2,29 +2,15 @@
 
 class Roguelike : public Game {
 	// Inherited via Game
-	virtual void ProcessInput() override {
-		SDL_Event event;
-		SDL_PollEvent(&event);
-		switch (event.type) {
-		case SDL_EventType::SDL_QUIT:
-			Exit();
-			break;
-
-		default:
-			break;
-		}
+	virtual void Start() override {
+		
 	}
 
 	virtual void Update() override {
-		Vector a = Vector();
-		Vector b = Vector(1, 1, 1);
-		float dist = Vector::distance(a, b);
-		Debug::Log("Distance is: " + std::to_string(dist));
 
 	}
 
 	virtual void Render() override {
-		
 		
 	}
 };

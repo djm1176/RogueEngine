@@ -19,11 +19,13 @@ public:
 
 
 	//User-defined required methods
-	virtual void ProcessInput() = 0;
+	virtual void Start() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
 private:
+	void m_ProcessInput();
+
 	bool m_initSuccess;
 	bool m_isRunning;
 	SDL_Thread* m_GameThread;

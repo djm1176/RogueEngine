@@ -147,6 +147,7 @@
     <ClCompile Include="..\src\Logger.cpp" />
     <ClCompile Include="..\src\Transform.cpp" />
     <ClCompile Include="..\src\Vector.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
