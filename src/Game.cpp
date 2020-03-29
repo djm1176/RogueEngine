@@ -56,19 +56,20 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 
 
 
-	Start();
+	OnStart();
 
 	while (m_isRunning) {
 		m_ProcessInput();
 
-		Update();
+		OnUpdate();
 
 		//Rendering
 		
 		//Clear the current graphics in the Renderer
+		//TODO: This should be more complex than just clearing the default Renderer...?
 		SDL_RenderClear(m_Renderer); //TODO: Handle return value
 		
-		Render();
+		OnRender();
 
 		//Update the window with graphics that are drawn on Renderer
 		SDL_RenderPresent(m_Renderer);

@@ -19,7 +19,7 @@ static SDL_Texture* loadTexture(const std::string& filename, SDL_Renderer *rende
 			Debug::LogError("CreateTextureFromSurface: Failed to load texture from file using loadTexture");
 		}
 	} else {
-		Debug::LogError("LoadBMP: Failed to load BMP from file using loadTexture");
+		Debug::LogError("LoadBMP: Failed to load BMP from file using loadTexture (filepath: '" + filename + "')");
 	}
 	return texture;
 }

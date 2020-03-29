@@ -16,6 +16,7 @@ public:
 	~Game();
 
 	//Internally required methods
+	
 	bool Init(const char* title, int xPos, int yPos, int width, int height, SDL_WindowFlags windowFlags, SDL_RendererFlags rendererFlags);
 	void Exit();
 
@@ -24,9 +25,10 @@ public:
 	SDL_Renderer* GetRenderer() { return m_Renderer; }
 
 	//User-defined required methods
-	virtual void Start() = 0;
-	virtual void Update() = 0;
-	virtual void Render() = 0;
+	virtual void OnStart() = 0;
+	virtual void OnUpdate() = 0;
+	virtual void OnRender() = 0;
+	virtual void OnExit() = 0;
 
 private:
 	void m_ProcessInput();

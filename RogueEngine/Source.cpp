@@ -1,37 +1,45 @@
 #include "Game.h"
+#include "Graphics.h"
 
 class Roguelike : public Game {
 
 	SDL_Texture* testTexture;
-	SDL_Rect testRect;
+	SDL_Rect* testRect;
 
 	ObjectManager manager;
 
 	GameObject& go{manager.addGameObject()};
 
 	// Inherited via Game
-	virtual void Start() override {
-		testTexture = loadTexture(Resources::GetResourcePath() + "64.bmp", GetRenderer());
+	virtual void OnStart() override {
+		testTexture = loadTexture(Resources::GetResourcePath() + "red128.bmp", GetRenderer());
+		testRect = new SDL_Rect();
 
-		testRect.x = 0;
-		testRect.y = 0;
-		testRect.w = 64;
-		testRect.h = 64;
+
+		testRect->x = 0;
+		testRect->y = 0;
+		testRect->w = 64;
+		testRect->h = 64;
 
 		
 		go.addComponent<Transform>();
 		Debug::Log(go.getComponent<Transform>().position());
-
 	}
 
-	virtual void Update() override {
-
+	virtual void OnUpdate() override {
+		testRect->x = rand() % 500;
+		testRect->y = rand() % 500;
 	}
 
 	//TODO: Rendering should be done internally and not really exposed to the game
-	virtual void Render() override {
-		blit(testTexture, GetRenderer(), &testRect);
+	virtual void OnRender() override {
+		blit(testTexture, GetRenderer(), testRect);
 	}
+
+	virtual void OnExit() override {
+		SDL_DestroyTexture(testTexture);
+	}
+
 };
 
 
