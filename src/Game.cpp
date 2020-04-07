@@ -30,9 +30,9 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 	}
 	Debug::Log("\tCreated Game Window");
 
-	//Instantiate Renderer
-	m_Renderer = SDL_CreateRenderer(m_Window, -1, rendererFlags);
-	if (m_Renderer == nullptr) {
+	//Instantiate Graphics Engine
+	bool gEngineInitSuccess = Graphics::instance()->init(m_Window, rendererFlags);
+	if (!gEngineInitSuccess) {
 		//Failed to instantiate primary renderer
 		Debug::LogError("\tFailed to initialize SDL2 Renderer");
 		Cleanup(m_Window);
@@ -69,7 +69,7 @@ bool Game::Init(const char* title, int xPos, int yPos, int width, int height, SD
 		//TODO: This should be more complex than just clearing the default Renderer...?
 		SDL_RenderClear(m_Renderer); //TODO: Handle return value
 		
-		OnRender();
+		Graphics::instance()->Render();
 
 		//Update the window with graphics that are drawn on Renderer
 		SDL_RenderPresent(m_Renderer);

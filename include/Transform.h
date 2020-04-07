@@ -1,8 +1,8 @@
 #pragma once
 
+#include <iostream>
 #include "GameObject.h"
 #include "Vector.h"
-#include <iostream>
 
 class Transform : public Component {
 public:

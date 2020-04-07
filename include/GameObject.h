@@ -74,9 +74,27 @@ private:
 };
 
 class ObjectManager {
-private:
-	std::vector<std::unique_ptr<GameObject>> gameObjects;
+	friend class Game;
+
+	//Singleton Design Pattern
+	//Search this project for 'SINGLETON_LINK' comment
 public:
+	static ObjectManager& instance() {
+		static ObjectManager instance;
+		return instance;
+	}
+private:
+	ObjectManager() {}
+
+	ObjectManager(ObjectManager const&);
+	void operator=(ObjectManager const&);
+public:
+	ObjectManager(ObjectManager const&) = delete;
+	void operator=(ObjectManager const&) = delete;
+
+
+private:
+
 	void update() {
 		for (auto& go : gameObjects) go->update();
 	}
@@ -87,7 +105,9 @@ public:
 			return !mGameObject->isActive();
 		}), std::end(gameObjects));
 	}
-	
+
+public:
+
 	GameObject& addGameObject() {
 		GameObject* mGameObject = new GameObject();
 
@@ -95,4 +115,18 @@ public:
 		gameObjects.emplace_back(std::move(uPtr));
 		return *mGameObject;
 	}
+
+private:
+	std::vector<std::unique_ptr<GameObject>> gameObjects;
+
+};
+
+class Sprite : Component {
+public:
+	Sprite(std::string name, SDL_Rect position);
+private:
+	void init() override;
+	void update() override;
+
+
 };

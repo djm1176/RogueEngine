@@ -27,7 +27,7 @@ public:
 	//User-defined required methods
 	virtual void OnStart() = 0;
 	virtual void OnUpdate() = 0;
-	virtual void OnRender() = 0;
+	//virtual void OnRender() = 0; Rendering moved to internal call; should not be handled by source game code
 	virtual void OnExit() = 0;
 
 private:
