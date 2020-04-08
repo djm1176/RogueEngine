@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>${ProjectDir}include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,25 +131,20 @@
     <ResourceCompile Include="RogueEngine.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Cleanup.h" />
-    <ClInclude Include="..\include\Flags.h" />
-    <ClInclude Include="..\include\Game.h" />
-    <ClInclude Include="..\include\GameObject.h" />
-    <ClInclude Include="..\include\Graphics.h" />
-    <ClInclude Include="..\include\Logger.h" />
-    <ClInclude Include="..\include\MathUtils.h" />
-    <ClInclude Include="..\include\Resources.h" />
-    <ClInclude Include="..\include\Transform.h" />
-    <ClInclude Include="..\include\Vector.h" />
-    <ClInclude Include="SpritesheetManager.h" />
+    <ClInclude Include="include\Cleanup.h" />
+    <ClInclude Include="include\Flags.h" />
+    <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\Graphics.h" />
+    <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\MathUtils.h" />
+    <ClInclude Include="include\Resources.h" />
+    <ClInclude Include="include\SpritesheetManager.h" />
+    <ClInclude Include="include\Transform.h" />
+    <ClInclude Include="include\Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Game.cpp" />
-    <ClCompile Include="..\src\Logger.cpp" />
-    <ClCompile Include="..\src\Transform.cpp" />
-    <ClCompile Include="..\src\Vector.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="SpritesheetManager.cpp" />
+    <ClCompile Include="src\SourceTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
