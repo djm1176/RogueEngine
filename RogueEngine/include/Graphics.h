@@ -7,6 +7,8 @@
 
 class Graphics {
 	friend class Game;
+	//friend const SDL_Texture& SpritesheetManager::loadSpritesheet(std::string, std::string);
+	friend class SpritesheetManager;
 	//Singleton Design Pattern
 	//SINGLETON_LINK https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 	//Credit to: Martin York
@@ -20,8 +22,6 @@ private:
 	Graphics() {}
 
 	SDL_Renderer* m_Renderer = nullptr;
-	Graphics(Graphics const&);
-	void operator=(Graphics const&);
 
 public:
 	Graphics(Graphics const&) = delete;

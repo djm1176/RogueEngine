@@ -5,8 +5,11 @@
 #include <string>
 #include <bitset>
 
+#include "ObjectManager.h"
+
+//Forward declarations
+class SDL_Rect;
 class Component;
-class GameObject;
 
 using ComponentID = std::size_t;
 
@@ -44,6 +47,10 @@ public:
 	
 	void destroy() { m_active = false; }
 
+	static GameObject& instantiate() {
+		return ObjectManager::instance().addGameObject();
+	}
+
 	template <typename T, typename... TArgs> T& addComponent(TArgs&&... mArgs) {
 		T* component(new T(std::forward<TArgs>(mArgs)...));
 		component->gameObject = this;
@@ -70,54 +77,6 @@ private:
 
 	ComponentArray m_componentArray;
 	ComponentBitSet m_componentBitSet;
-
-};
-
-class ObjectManager {
-	friend class Game;
-
-	//Singleton Design Pattern
-	//Search this project for 'SINGLETON_LINK' comment
-public:
-	static ObjectManager& instance() {
-		static ObjectManager instance;
-		return instance;
-	}
-private:
-	ObjectManager() {}
-
-	ObjectManager(ObjectManager const&);
-	void operator=(ObjectManager const&);
-public:
-	ObjectManager(ObjectManager const&) = delete;
-	void operator=(ObjectManager const&) = delete;
-
-
-private:
-
-	void update() {
-		for (auto& go : gameObjects) go->update();
-	}
-
-	void refresh() {
-		gameObjects.erase(std::remove_if(std::begin(gameObjects), std::end(gameObjects),
-			[](const std::unique_ptr<GameObject>& mGameObject) {
-			return !mGameObject->isActive();
-		}), std::end(gameObjects));
-	}
-
-public:
-
-	GameObject& addGameObject() {
-		GameObject* mGameObject = new GameObject();
-
-		std::unique_ptr<GameObject> uPtr{ mGameObject };
-		gameObjects.emplace_back(std::move(uPtr));
-		return *mGameObject;
-	}
-
-private:
-	std::vector<std::unique_ptr<GameObject>> gameObjects;
 
 };
 
